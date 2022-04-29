@@ -49,7 +49,7 @@ function updateAssignment(req, res) {
             console.log(err);
             res.send(err)
         } else {
-          res.json({message: 'updated'})
+          res.json({message: `${assignment.nom} updated!`})
         }
 
       // console.log('updated ', assignment)
