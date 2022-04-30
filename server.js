@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
+let matiere = require('./routes/matieres');
 let mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -30,7 +31,7 @@ mongoose.connect(uri, options)
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization,Access-Control-Allow-Headers");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
@@ -50,11 +51,16 @@ app.route(prefix + '/assignments')
   .put(assignment.updateAssignment);
 
 
+app.route(prefix + '/matiere')
+    .post(matiere.postMatiere)
+    .get(matiere.getMatieres);
+
 app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
 
  
+
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);

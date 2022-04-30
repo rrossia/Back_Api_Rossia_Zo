@@ -1,5 +1,6 @@
 let Assignment = require('../model/assignment');
 
+
 // Récupérer tous les assignments (GET)
 function getAssignments(req, res){
     Assignment.find((err, assignments) => {
@@ -28,6 +29,10 @@ function postAssignment(req, res){
     assignment.nom = req.body.nom;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
+    assignment.auteur = req.body.auteur;
+    assignment.note = req.body.note;
+    assignment.remarques= req.body.remarques;
+    assignment.matieres_id=req.body.matieres_id;
 
     console.log("POST assignment reçu :" +req.body.dateDeRendu);
     console.log("POST assignment reçu :");
@@ -41,6 +46,8 @@ function postAssignment(req, res){
         res.json({ message: `${assignment.nom} saved!`})
     })
 }
+
+
 
 // Update d'un assignment (PUT)
 function updateAssignment(req, res) {
