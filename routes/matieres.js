@@ -27,4 +27,14 @@ function getMatieres(req, res){
     });
 }
 
-module.exports = {  postMatiere ,getMatieres};
+//find avec GET
+function getMatiere(req, res){
+    let matieretId = req.params.id;
+
+    Matiere.findOne({id: matieretId}, (err, mat) =>{
+        if(err){res.send(err)}
+        res.json(mat);
+    })
+}
+
+module.exports = {  postMatiere ,getMatieres,getMatiere};
