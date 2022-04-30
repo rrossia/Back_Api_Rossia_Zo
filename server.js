@@ -4,7 +4,11 @@ let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
 let matiere = require('./routes/matieres');
 let mongoose = require('mongoose');
+<<<<<<< HEAD
 const details = require('./routes/details');
+=======
+let users = require('./routes/users');
+>>>>>>> 79dbc4395d8f7bcef3b6a1ac40cec7b11ee8cbb9
 
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
@@ -66,11 +70,14 @@ app.route(prefix + '/assignments/:id')
   .delete(assignment.deleteAssignment);
 
  
+app.route(prefix + '/users')
+.get(users.getUsers);
+
+app.route(prefix + '/user/:id')
+  .get(users.getUser);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
 module.exports = app;
-
-
